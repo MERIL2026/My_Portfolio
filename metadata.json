@@ -1,0 +1,6 @@
+{
+  "name": "Meril Parmar Portfolio",
+  "description": "The professional digital portfolio of Meril Parmar, featuring an interactive 3D bot, custom brief configurator, and high-performance, robust security configurations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
