@@ -67,12 +67,15 @@ export function Hero() {
                   {data.about.story.substring(0, 150)}...
                 </p>
                 
-                <div className="flex gap-4 mt-6">
+                <div className="flex flex-wrap gap-4 mt-6">
                   <a href="#projects" className="bg-brand-white text-brand-black px-8 py-3 text-xs font-black uppercase tracking-tighter hover:bg-brand-orange hover:text-brand-white transition-colors duration-300 inline-block">
                     View Work
                   </a>
                   <a href="#contact" className="border border-brand-white/20 px-8 py-3 text-xs font-black uppercase tracking-tighter hover:bg-brand-white hover:text-brand-black transition-colors duration-300 inline-block">
                     Hire Me
+                  </a>
+                  <a href="/Meril_Parmar_Resume.docx" download className="bg-brand-orange text-brand-black px-8 py-3 text-xs font-black uppercase tracking-tighter hover:bg-brand-white hover:text-brand-black transition-colors duration-300 inline-block">
+                    Download Resume
                   </a>
                 </div>
               </div>

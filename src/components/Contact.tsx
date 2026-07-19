@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { SectionHeading } from "./SectionHeading";
-import { supabase } from "../lib/supabase";
 import emailjs from '@emailjs/browser';
 
 type ContactFormData = {
@@ -32,16 +31,22 @@ export function Contact() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      const { error } = await supabase.from("contacts").insert([
-        {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: data.name.trim(),
           email: data.email.trim(),
           message: data.message.trim(),
-        },
-      ]);
+        }),
+      });
 
-      if (error) {
-        console.error("Supabase insert error:", error.message);
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        console.error("Backend insert error:", responseData.error, responseData.details);
         setSubmitStatus("error");
       } else {
         // Send email via EmailJS

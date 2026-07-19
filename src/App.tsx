@@ -16,9 +16,11 @@ import { Experience } from "./components/Experience";
 import { Services } from "./components/Services";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { PortfolioRating } from "./components/PortfolioRating";
 import { TornPaper, TornPaperTop } from "./components/TornPaper";
 import { SEO } from "./components/SEO";
 import { SmoothScroll } from "./components/SmoothScroll";
+import { Toaster } from "sonner";
 
 export default function App() {
   return (
@@ -61,8 +63,23 @@ export default function App() {
         <Contact />
       </main>
 
+      <PortfolioRating />
       <Footer />
     </div>
+    <Toaster
+      theme="dark"
+      position="top-right"
+      richColors
+      toastOptions={{
+        style: {
+          background: "#1a1a1a",
+          border: "1px solid rgba(255,255,255,0.1)",
+          color: "#fff",
+          fontFamily: "monospace",
+          fontSize: "13px",
+        },
+      }}
+    />
     </SmoothScroll>
   );
 }

@@ -37,9 +37,14 @@ export function About() {
                 <p className="text-xl md:text-2xl font-medium leading-relaxed mb-6">
                   {data.about.intro}
                 </p>
-                <p className="text-base md:text-lg opacity-80 leading-relaxed">
+                <p className="text-base md:text-lg opacity-80 leading-relaxed mb-8">
                   {data.about.story}
                 </p>
+                
+                <a href="/Meril_Parmar_Resume.docx" download className="bg-brand-black text-brand-white px-8 py-4 text-sm font-black uppercase tracking-widest hover:bg-brand-orange hover:text-brand-black transition-all duration-300 inline-flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download Resume
+                </a>
               </div>
             </motion.div>
           </div>

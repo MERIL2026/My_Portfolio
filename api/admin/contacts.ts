@@ -1,8 +1,12 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
+import { looseAuthLimiter } from "../../src/lib/rate-limit.ts";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
+export default looseAuthLimiter.vercelHandler(async (req: VercelRequest, res: VercelResponse) => {
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword) {
+    return res.status(500).json({ error: "Server misconfiguration" });
+  }
   const authHeader = req.headers.authorization;
 
   if (!authHeader || authHeader !== `Bearer ${adminPassword}`) {
@@ -30,4 +34,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("Failed to fetch contacts", error);
     return res.status(500).json({ error: "Internal server error" });
   }
-}
+});
