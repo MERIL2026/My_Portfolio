@@ -948,13 +948,20 @@ export function Admin() {
                       <div className="flex flex-col gap-2">
                         {ratings.length > 0 ? (
                           ratings.slice(0, 10).map((r, i) => (
-                            <div key={i} className="flex justify-between items-center p-3 bg-brand-black/50 border border-brand-white/5">
-                              <div className="flex items-center gap-2 text-brand-orange">
-                                {[...Array(r.score)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
+                            <div key={i} className="flex flex-col gap-2 p-3 bg-brand-black/50 border border-brand-white/5">
+                              <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-2 text-brand-orange">
+                                  {[...Array(r.score)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
+                                </div>
+                                <span className="text-xs font-mono text-brand-white/40">
+                                  {new Date(r.created_at).toLocaleString()}
+                                </span>
                               </div>
-                              <span className="text-xs font-mono text-brand-white/40">
-                                {new Date(r.created_at).toLocaleString()}
-                              </span>
+                              {r.review && (
+                                <p className="text-xs text-brand-white/70 italic bg-brand-dark/50 p-2 border-l-2 border-brand-orange mt-1 whitespace-pre-wrap">
+                                  "{r.review}"
+                                </p>
+                              )}
                             </div>
                           ))
                         ) : (

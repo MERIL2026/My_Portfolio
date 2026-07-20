@@ -42,6 +42,7 @@ export type IdData = z.infer<typeof idSchema>;
 // Schema for portfolio rating submissions
 export const ratingSchema = z.object({
   score: z.number().int().min(1, "Score must be at least 1").max(5, "Score must be at most 5"),
+  review: z.string().max(500, "Review is too long").optional(),
 });
 
 export type RatingData = z.infer<typeof ratingSchema>;

@@ -156,6 +156,7 @@ function EmojiBurst({ active }: { active: boolean }) {
 export function PortfolioRating() {
   const [hovered, setHovered] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
   const [confettiTrigger, setConfettiTrigger] = useState(false);
@@ -190,7 +191,7 @@ export function PortfolioRating() {
       await fetch("/api/ratings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ score: selected }),
+        body: JSON.stringify({ score: selected, review: review.trim() || undefined }),
       });
     } catch {
       // Silent fail — localStorage still records it locally
@@ -211,6 +212,7 @@ export function PortfolioRating() {
     setCelebrating(false);
     setConfettiTrigger(false);
     setSelected(prevRating);
+    setReview("");
   };
 
   const displayStar = hovered || selected;
@@ -305,6 +307,25 @@ export function PortfolioRating() {
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* Optional Review Input */}
+              <AnimatePresence>
+                {selected > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                    animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                    className="w-full max-w-sm overflow-hidden"
+                  >
+                    <textarea
+                      value={review}
+                      onChange={(e) => setReview(e.target.value)}
+                      placeholder="Optional: Tell me what you think..."
+                      className="w-full bg-brand-white/5 border border-brand-white/10 p-4 text-sm text-brand-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none resize-none min-h-[100px] font-mono placeholder:text-brand-white/30 transition-all duration-300"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Submit */}
               <motion.button

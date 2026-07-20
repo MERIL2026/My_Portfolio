@@ -13,7 +13,7 @@ export default publicLimiter.vercelHandler(async (req: VercelRequest, res: Verce
     return res.status(400).json({ error: "Validation failed", details: parseResult.error.format() });
   }
 
-  const { score } = parseResult.data;
+  const { score, review } = parseResult.data;
 
   const supabaseUrl = process.env.VITE_SUPABASE_URL;
   const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
@@ -24,7 +24,7 @@ export default publicLimiter.vercelHandler(async (req: VercelRequest, res: Verce
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
-    const { error } = await supabase.from("ratings").insert([{ score }]);
+    const { error } = await supabase.from("ratings").insert([{ score, review: review || null }]);
     if (error) throw error;
     return res.status(200).json({ success: true });
   } catch (error) {
