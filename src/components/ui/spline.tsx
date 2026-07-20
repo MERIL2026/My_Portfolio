@@ -32,13 +32,8 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
   const [clickReaction, setClickReaction] = useState(false)
 
   useEffect(() => {
-    // 1. First verify browser WebGL support
-    if (!checkWebGLSupport()) {
-      console.warn('WebGL is not supported or disabled in this browser. Activating premium 2D interactive fallback.')
-      setUseFallback(true)
-      setIsLoading(false)
-      return
-    }
+    // 1. Force attempt to load the 3D scene (bypassing manual WebGL check)
+    // We let the try/catch block handle any actual WebGL initialization failures.
 
     let splineApp: Application | null = null
     let isMounted = true
