@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { data } from "../data";
 import { useEffect, useState } from "react";
-import { SplineScene } from "./ui/spline";
+import { SplineScene } from "./ui/splite";
 import { Spotlight } from "./ui/spotlight";
 import { AnimatedNumber } from "./AnimatedNumber";
 
