@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { looseAuthLimiter } from "../../src/lib/rate-limit.ts";
+import { looseAuthLimiter } from "../../src/lib/rate-limit";
 
 export default looseAuthLimiter.vercelHandler(async (req: VercelRequest, res: VercelResponse) => {
   const adminPassword = process.env.ADMIN_PASSWORD;

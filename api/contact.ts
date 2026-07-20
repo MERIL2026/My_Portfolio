@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
-import { publicLimiter } from "../src/lib/rate-limit.ts";
-import { contactSchema } from "../src/lib/validation.ts";
+import { publicLimiter } from "../src/lib/rate-limit";
+import { contactSchema } from "../src/lib/validation";
 
 export default publicLimiter.vercelHandler(async (req: VercelRequest, res: VercelResponse) => {
   if (req.method !== "POST") {

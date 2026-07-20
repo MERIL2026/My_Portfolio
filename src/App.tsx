@@ -8,6 +8,7 @@ import { Hero } from "./components/Hero";
 import { About } from "./components/About";
 import { Skills } from "./components/Skills";
 import { Projects } from "./components/Projects";
+import { LeadershipEvents } from "./components/LeadershipEvents";
 import { UnrealShowcase } from "./components/UnrealShowcase";
 import { BeyondCode } from "./components/BeyondCode";
 import { Certificates } from "./components/Certificates";
@@ -43,6 +44,9 @@ export default function App() {
         <TornPaper className="text-brand-paper bg-brand-black" />
         <Projects />
         
+        <TornPaper className="text-brand-paper bg-brand-black" />
+        <LeadershipEvents />
+
         <TornPaperTop className="text-brand-paper bg-brand-black" />
         <UnrealShowcase />
         

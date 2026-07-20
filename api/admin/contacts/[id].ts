@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
-import { looseAuthLimiter } from "../../../src/lib/rate-limit.ts";
-import { idSchema } from "../../../src/lib/validation.ts";
+import { looseAuthLimiter } from "../../../src/lib/rate-limit";
+import { idSchema } from "../../../src/lib/validation";
 
 export default looseAuthLimiter.vercelHandler(async (req: VercelRequest, res: VercelResponse) => {
   const adminPassword = process.env.ADMIN_PASSWORD;

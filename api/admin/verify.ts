@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { strictAuthLimiter } from "../../src/lib/rate-limit.ts";
-import { authSchema } from "../../src/lib/validation.ts";
+import { strictAuthLimiter } from "../../src/lib/rate-limit";
+import { authSchema } from "../../src/lib/validation";
 
 export default strictAuthLimiter.vercelHandler((req: VercelRequest, res: VercelResponse) => {
   if (req.method !== "POST") {

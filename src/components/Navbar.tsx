@@ -19,6 +19,7 @@ export function Navbar() {
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
+    { name: "Leadership", href: "#leadership" },
     { name: "Unreal 3D", href: "#unreal-engine" },
     { name: "Beyond Code", href: "#beyond-code" },
     { name: "Certs", href: "#certificates" },
