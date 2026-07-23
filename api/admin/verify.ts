@@ -53,19 +53,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (cleanUserPassword === cleanAdminPassword) {
       return res.status(200).json({ success: true });
     } else {
-      const diffs: string[] = [];
-      const len = Math.max(cleanUserPassword.length, cleanAdminPassword.length);
-      for (let i = 0; i < len; i++) {
-        const u = cleanUserPassword[i] ?? "(none)";
-        const a = cleanAdminPassword[i] ?? "(none)";
-        if (u !== a) {
-          diffs.push(`Pos ${i+1}: typed '${u}' (${u.charCodeAt(0)}), expected '${a}' (${a.charCodeAt(0)})`);
-        }
-      }
-      return res.status(401).json({ 
-        error: "Unauthorized", 
-        debugInfo: `Mismatch details: ${diffs.join("; ")}`
-      });
+      return res.status(401).json({ error: "Unauthorized" });
     }
   } catch (err: any) {
     console.error("verify handler error:", err);
