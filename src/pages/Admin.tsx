@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Lock, Mail, Activity, BarChart, Download, LogOut, Search, ExternalLink, RefreshCw, Trash2, Bell, FileText, Star } from "lucide-react";
+import { Lock, Mail, Activity, BarChart, Download, LogOut, Search, ExternalLink, RefreshCw, Trash2, Bell, FileText, Star, Eye, EyeOff } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { data } from "../data";
 import { toast } from "sonner";
@@ -9,6 +9,7 @@ import autoTable from "jspdf-autotable";
 
 export function Admin() {
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState<"overview" | "contacts" | "analytics" | "ratings">("overview");
@@ -480,15 +481,23 @@ export function Admin() {
           <p className="text-center text-xs font-mono text-brand-white/50 mb-8 uppercase tracking-widest">Restricted Area</p>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
+            <div className="relative flex flex-col gap-2">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="ENTER PASSWORD"
-                className="bg-transparent border-b-2 border-brand-white/20 py-3 focus:outline-none focus:border-brand-orange transition-colors font-mono text-center tracking-[0.3em]"
+                className="bg-transparent border-b-2 border-brand-white/20 py-3 pr-10 focus:outline-none focus:border-brand-orange transition-colors font-mono text-center tracking-[0.3em]"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-brand-white/50 hover:text-brand-orange transition-colors"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
             {error && <p className="text-brand-orange text-xs font-mono text-center">{error}</p>}
             <button
