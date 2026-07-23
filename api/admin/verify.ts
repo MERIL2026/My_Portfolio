@@ -47,7 +47,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: "Server misconfiguration: ADMIN_PASSWORD not set" });
     }
 
-    if (password === adminPassword) {
+    if (password.trim() === adminPassword.trim()) {
       return res.status(200).json({ success: true });
     } else {
       return res.status(401).json({ error: "Unauthorized" });

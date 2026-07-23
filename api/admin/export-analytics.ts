@@ -4,7 +4,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const adminPassword = process.env.ADMIN_PASSWORD;
     const authHeader = req.headers.authorization;
-    if (!adminPassword || !authHeader || authHeader !== `Bearer ${adminPassword}`) {
+    if (!adminPassword || !authHeader || authHeader.trim() !== `Bearer ${adminPassword.trim()}`) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
