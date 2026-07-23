@@ -47,10 +47,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: "Server misconfiguration: ADMIN_PASSWORD not set" });
     }
 
-    if (password.trim() === adminPassword.trim()) {
+    const cleanAdminPassword = adminPassword.replace(/^["']|["']$/g, "").trim();
+    const cleanUserPassword = password.replace(/^["']|["']$/g, "").trim();
+
+    if (cleanUserPassword === cleanAdminPassword) {
       return res.status(200).json({ success: true });
     } else {
-      return res.status(401).json({ error: "Unauthorized" });
+      return res.status(401).json({ 
+        error: "Unauthorized", 
+        debugInfo: `Password length mismatch or incorrect chars. Received ${cleanUserPassword.length} chars, Expected ${cleanAdminPassword.length} chars.`
+      });
     }
   } catch (err: any) {
     console.error("verify handler error:", err);

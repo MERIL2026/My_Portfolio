@@ -77,8 +77,10 @@ export function Admin() {
         fetchContacts(password);
         fetchRatings(password);
       } else {
-        setError("Invalid password");
-        toast.error("Authentication failed", { description: "Check your password and try again." });
+        const errData = await response.json().catch(() => ({}));
+        const errMsg = errData.debugInfo || errData.error || "Check your password and try again.";
+        setError(errMsg);
+        toast.error("Authentication failed", { description: errMsg });
       }
     } catch {
       setError("Server error. Please try again.");
